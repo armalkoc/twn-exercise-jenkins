@@ -44,7 +44,7 @@ pipeline {
         stage("Build and Push DokcerImage") {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-private-repo', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    withCredentials([usernamePassword(credentialsId: 'docker-full-pip', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                         sh "docker build -t 192.168.0.112:3031/docker-full-pipeline:twn-exc-app-${IMAGE_NAME} ."
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
                         sh "docker push 192.168.0.112:3031/docker-full-pipeline:twn-exc-app-${IMAGE_NAME}"
@@ -61,7 +61,7 @@ pipeline {
                         sh 'git remote set-url origin https://$USER:$PASS@github.com/armalkoc/twn-exercise-jenkins.git'
                         sh 'git add .'
                         sh 'git commit -m "ci: version bump"'
-                        sh 'git push'
+                        sh 'git push HEAD:master'
                     }
                 }
             }
