@@ -34,8 +34,10 @@ pipeline {
             steps {
                 script {
                     // we have to get inside app directory to be able to run test
-                    sh 'npm install'
-                    sh 'npm test'
+                    dir("app") {
+                        sh 'npm install'
+                        sh 'npm test'
+                    }
                 }
             }
         }
