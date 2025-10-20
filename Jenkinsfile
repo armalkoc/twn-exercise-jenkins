@@ -45,9 +45,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-private-repo', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                        sh "docker build -t amalkoc/twn-demo-app:twn-exc-app-${IMAGE_NAME} ."
+                        sh "docker build -t 192.168.0.112:3031/docker-full-pipeline:twn-exc-app-${IMAGE_NAME} ."
                         sh 'echo $PASS | docker login -u $USER --password-stdin'
-                        sh "docker push amalkoc/twn-demo-app:twn-exc-app-${IMAGE_NAME}"
+                        sh "docker push 192.168.0.112:3031/docker-full-pipeline:twn-exc-app-${IMAGE_NAME}"
                     }
                 }
             }
