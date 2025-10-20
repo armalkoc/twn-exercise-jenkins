@@ -2,7 +2,7 @@ FROM node:20-alpine
 
 RUN mkdir -p /usr/app
 
-COPY ./app /opt/app
+COPY ./app /usr/app
 
 WORKDIR /usr/app
 
