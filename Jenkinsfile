@@ -17,7 +17,6 @@ pipeline {
                 }
             }
 
-        }
         stage("Runn App Code Test") {
             steps {
                 script {
@@ -40,5 +39,5 @@ pipeline {
                 }
             }
         }
-    
+    }
 }
