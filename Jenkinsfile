@@ -1,6 +1,7 @@
-@Library('exc-jenkins-shared-library')
+@Library('exc-jenkins-shared-library')_
 
 pipeline {
+    
     agent any
 
     tools {
@@ -24,6 +25,7 @@ pipeline {
                     }
                 }
             }
+
         stage("Build and Push DokcerImage") {
             steps {
                 script {
