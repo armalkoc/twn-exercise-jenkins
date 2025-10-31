@@ -10,6 +10,11 @@ pipeline {
 
     stages {
         stage("Increment App Version") {
+            when {
+                expression {
+                    return env.GIT_BRANCH == "master"
+                }
+            }
             steps {
                 script {
                     incrementVersion()
@@ -26,6 +31,11 @@ pipeline {
             }
 
         stage("Build and Push DokcerImage") {
+            when {
+                expression {
+                    return env.GIT_BRANCH == "master"
+                }
+            }
             steps {
                 script {
                     buildPush()
@@ -33,6 +43,11 @@ pipeline {
             }
         }
         stage("deploy to EC2") {
+            when {
+                expression {
+                    return env.GIT_BRANCH == "master"
+                }
+            }
             steps {
                 script {
                     
@@ -47,6 +62,11 @@ pipeline {
             }
         }
         stage("Commit Version Update") {
+            when {
+                expression {
+                    return env.GIT_BRANCH == "master"
+                }
+            }
             steps {
                 script {
                     commitUpdate()
