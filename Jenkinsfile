@@ -35,6 +35,8 @@ pipeline {
         stage("deploy to EC2") {
             steps {
                 script {
+                    def imageName = incrementVersion()
+                    env.IMAGE_NAME = imageName
                     def ec2Instance = "ec2-user@52.28.226.185"
                     def shellCmd = "bash ./server-cmds.sh ${env.IMAGE_NAME}"
                     sshagent(['ec2-server-key2']) {
